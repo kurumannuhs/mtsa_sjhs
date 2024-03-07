@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+/>
+<link rel="stylesheet" href="style.css" />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+  integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofP+NY5LkUKVA5IYYaunQ2A/6I5meAWgF"
+  crossorigin="anonymous"
+/>
+<title>MTSA Rank List</title>
+</head>
+<body>
+<div class="container mt-5">
+<h1 class="text-center">St. John's HS Kurumannu</h1>
+<h1 class="text-center">MTSA Rank List</h1>
+<div class="row mt-4">
+  <div class="col-md-6">
+    <h2 class="text-center">HS Section</h2>
+    <input
+      type="text"
+      id="hsSearch"
+      class="form-control mb-2"
+      placeholder="Search HS Section"
+      oninput="searchHS()"
+    />
+    <table id="hsTable" class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Name</th>
+          <th>Class</th>
+          <th>Hours Awarded</th>
+          <th>Change in Rank</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Data rows for the HS Section table will be dynamically added -->
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-md-6">
+    <h2 class="text-center">UP Section</h2>
+    <input
+      type="text"
+      id="upSearch"
+      class="form-control mb-2"
+      placeholder="Search UP Section"
+      oninput="searchUP()"
+    />
+    <table id="upTable" class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Name</th>
+          <th>Class</th>
+          <th>Hours Awarded</th>
+          <th>Status</th>
+          <!-- Add a column for the action button in each table -->
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Data rows for the UP Section table will be dynamically added -->
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.1/xlsx.full.min.js"></script>
+<script src="script.js"></script>
+<script>
+function searchHS() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("hsSearch");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("hsTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1]; // Assuming the text to search is in the first column
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+function searchUP() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("upSearch");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("upTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1]; // Assuming the text to search is in the first column
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+
+</body>
+</html>
